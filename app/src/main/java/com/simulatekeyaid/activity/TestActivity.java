@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import com.simulatekeyaid.R;
 import com.simulatekeyaid.application.BaseApplication;
+import com.simulatekeyaid.broad.BroadcastManager;
 import com.simulatekeyaid.service.BackgroungSpeechRecongnizerService;
 
 import butterknife.BindView;
@@ -19,10 +20,14 @@ import butterknife.ButterKnife;
 
 public class TestActivity extends Activity implements View.OnClickListener {
 
-    @BindView(R.id.button)
+    @BindView(R.id.button1)
     Button openBtn;
     @BindView(R.id.button2)
     Button closeBtn;
+    @BindView(R.id.button3)
+    Button BtnStart;
+    @BindView(R.id.button4)
+    Button BtnOver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,15 +35,22 @@ public class TestActivity extends Activity implements View.OnClickListener {
         ButterKnife.bind(this);
         openBtn.setOnClickListener(this);
         closeBtn.setOnClickListener(this);
+        BtnStart.setOnClickListener(this);
+        BtnOver.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
         if (openBtn  == view){
-            Intent mBootIntent = new Intent(BaseApplication.getContext(), BackgroungSpeechRecongnizerService.class);
-            BaseApplication.getContext().startService(mBootIntent);
-        }else{
-
+            Intent intent = new Intent(BaseApplication.getContext(), BackgroungSpeechRecongnizerService.class);
+            BaseApplication.getContext().startService(intent);
+        }else if (closeBtn == view){
+            Intent intent = new Intent(BaseApplication.getContext(), BackgroungSpeechRecongnizerService.class);
+            BaseApplication.getContext().stopService(intent);
+        }else if (BtnStart == view){
+            BroadcastManager.sendBroadcast(BroadcastManager.ACTION_VOICE_EMULATE_KEY_OPEN,null);
+        }else if (BtnOver == view){
+            BroadcastManager.sendBroadcast(BroadcastManager.ACTION_VOICE_EMULATE_KEY_CLOSE,null);
         }
     }
 }
