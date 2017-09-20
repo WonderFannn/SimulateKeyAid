@@ -21,6 +21,7 @@ import com.iflytek.cloud.SpeechRecognizer;
 import com.simulatekeyaid.application.BaseApplication;
 import com.simulatekeyaid.broad.BroadcastManager;
 import com.simulatekeyaid.util.JsonParser;
+import com.simulatekeyaid.util.PinyinFormat;
 import com.simulatekeyaid.util.RootShellCmd;
 import com.simulatekeyaid.util.ToastUtil;
 
@@ -37,7 +38,7 @@ public class BackgroungSpeechRecongnizerService extends Service {
     public void onCreate() {
         Log.d("wangfan", "BackgroungSpeechRecongnizerService created");
         super.onCreate();
-        ToastUtil.showShort(BaseApplication.getContext(),"语音监听服务启动了");
+        ToastUtil.showShort(BaseApplication.getContext(),"后台语音识别服务启动了");
         mRSC = new RootShellCmd();
         //注册广播
         IntentFilter mFilter = new IntentFilter();
@@ -47,6 +48,12 @@ public class BackgroungSpeechRecongnizerService extends Service {
 
         // 初始化
         init();
+    }
+
+    @Override
+    public void onDestroy() {
+        ToastUtil.showShort(BaseApplication.getContext(),"后台语音识别服务已关闭");
+        super.onDestroy();
     }
 
     private void init() {
@@ -164,17 +171,21 @@ public class BackgroungSpeechRecongnizerService extends Service {
             Log.i("TAG", "WS->result:"+text);
             if(!TextUtils.isEmpty(text)){
                 ToastUtil.showShort(BaseApplication.getContext(),text);
-                if (text.equals("返回")){
+                if (PinyinFormat.getPinYin(text).equals(PinyinFormat.getPinYin("返回"))){
                     setKeyPress(KeyEvent.KEYCODE_BACK);
-                }else if (text.equals("向上")){
+                }else if (PinyinFormat.getPinYin(text).equals(PinyinFormat.getPinYin("向上"))
+                        ||PinyinFormat.getPinYin(text).equals(PinyinFormat.getPinYin("上"))){
                     setKeyPress(KeyEvent.KEYCODE_DPAD_UP);
-                }else if (text.equals("向下")){
+                }else if (PinyinFormat.getPinYin(text).equals(PinyinFormat.getPinYin("向下"))
+                        ||PinyinFormat.getPinYin(text).equals(PinyinFormat.getPinYin("下"))){
                     setKeyPress(KeyEvent.KEYCODE_DPAD_DOWN);
-                }else if (text.equals("向左")){
+                }else if (PinyinFormat.getPinYin(text).equals(PinyinFormat.getPinYin("向左"))
+                        ||PinyinFormat.getPinYin(text).equals(PinyinFormat.getPinYin("左"))){
                     setKeyPress(KeyEvent.KEYCODE_DPAD_LEFT);
-                }else if (text.equals("向右")){
+                }else if (PinyinFormat.getPinYin(text).equals(PinyinFormat.getPinYin("向右"))
+                        ||PinyinFormat.getPinYin(text).equals(PinyinFormat.getPinYin("右"))){
                     setKeyPress(KeyEvent.KEYCODE_DPAD_RIGHT);
-                }else if (text.equals("确定")){
+                }else if (PinyinFormat.getPinYin(text).equals(PinyinFormat.getPinYin("确定"))){
                     setKeyPress(KeyEvent.KEYCODE_DPAD_CENTER);
                 }
             }
@@ -204,6 +215,7 @@ public class BackgroungSpeechRecongnizerService extends Service {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (BroadcastManager.ACTION_VOICE_EMULATE_KEY_OPEN.equals(action)) {
+                ToastUtil.showShort(BaseApplication.getContext(),"接收到开启按键模拟广播");
                 if (hearer != null) {
                     hearer.startListening(mRecoListener);
                 }else {
@@ -213,6 +225,7 @@ public class BackgroungSpeechRecongnizerService extends Service {
                 mListenThread = new ListenThread();
                 mListenThread.start();
             }else if(BroadcastManager.ACTION_VOICE_EMULATE_KEY_CLOSE.equals(action)){
+                ToastUtil.showShort(BaseApplication.getContext(),"接收到关闭按键模拟广播");
                 if(mListenThread!=null){
                     mListenThread.interrupt();
                     mListenThread = null;

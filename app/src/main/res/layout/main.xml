@@ -11,13 +11,6 @@
         android:layout_weight="1" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="关闭服务" />
-
-    <Button
         android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -30,4 +23,11 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="结束监听广播" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="关闭服务" />
 </LinearLayout>
