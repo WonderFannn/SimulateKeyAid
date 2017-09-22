@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.simulatekeyaid.service.BackgroungSpeechRecongnizerService;
+import com.simulatekeyaid.service.SimulateKeyService;
 
 /**
  * Created by wangfan on 2017/9/15.
@@ -16,7 +16,7 @@ public class BootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.i(TAG, "onReceive");
-        Intent mBootIntent = new Intent(context, BackgroungSpeechRecongnizerService.class);
+        Intent mBootIntent = new Intent(context, SimulateKeyService.class);
         context.startService(mBootIntent);
     }
 }

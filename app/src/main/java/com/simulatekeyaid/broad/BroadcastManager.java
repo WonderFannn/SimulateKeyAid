@@ -13,11 +13,17 @@ import com.simulatekeyaid.application.BaseApplication;
  * @company 金鑫智慧
  */
 public class BroadcastManager {
-	public static final String ACTION_VOICE_EMULATE_KEY_OPEN = "action_voice_emulate_key_open";
 	/**
 	 * 关闭唤醒服务广播
 	 */
-	public static final String ACTION_VOICE_EMULATE_KEY_CLOSE = "action_voice_emulate_key_close";
+
+	public static final String ACTION_SIMULATE_KEY_HOME = "action_simulate_key_home";
+	public static final String ACTION_SIMULATE_KEY_BACK = "action_simulate_key_back";
+	public static final String ACTION_SIMULATE_KEY_DPAD_CENTER = "action_simulate_key_pad_center";
+	public static final String ACTION_SIMULATE_KEY_DPAD_UP = "action_simulate_key_dpad_up";
+	public static final String ACTION_SIMULATE_KEY_DPAD_DOWN = "action_simulate_key_dpad_down";
+	public static final String ACTION_SIMULATE_KEY_DPAD_LEFT = "action_simulate_key_dpad_left";
+	public static final String ACTION_SIMULATE_KEY_DPAD_RIGHT = "action_simulate_key_dpad_right";
 
 	/**
 	 * 发送广播消息

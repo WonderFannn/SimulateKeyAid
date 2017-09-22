@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">按键模拟助手</string>
-    <!-- 请替换成在语音云官网申请的appid -->
-    <string name="app_id">599f8102</string>
 </resources>

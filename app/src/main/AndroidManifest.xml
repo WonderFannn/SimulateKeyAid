@@ -2,23 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.simulatekeyaid"
     android:versionCode="1"
-    android:versionName="0.1.0915.1713" >
+    android:versionName="0.9.0922.1028" >
 
     <application
         android:icon="@drawable/icon"
         android:name=".application.BaseApplication"
         android:label="按键模拟助手" >
 
-        <!-- 移动统计分析 -->
-        <meta-data
-            android:name="IFLYTEK_APPKEY"
-            android:value="'599f8102'" />
-        <meta-data
-            android:name="IFLYTEK_CHANNEL"
-            android:value="Android_Demo" />
-
         <service
-            android:name=".service.BackgroungSpeechRecongnizerService"
+            android:name=".service.SimulateKeyService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.simulatekeyaid.service.BackgroungSpeechRecongnizerService" />
@@ -41,7 +33,6 @@
     <uses-sdk android:minSdkVersion="15" />
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />

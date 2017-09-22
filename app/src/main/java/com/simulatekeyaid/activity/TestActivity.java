@@ -9,7 +9,7 @@ import android.widget.Button;
 import com.simulatekeyaid.R;
 import com.simulatekeyaid.application.BaseApplication;
 import com.simulatekeyaid.broad.BroadcastManager;
-import com.simulatekeyaid.service.BackgroungSpeechRecongnizerService;
+import com.simulatekeyaid.service.SimulateKeyService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,15 +42,11 @@ public class TestActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if (openBtn  == view){
-            Intent intent = new Intent(BaseApplication.getContext(), BackgroungSpeechRecongnizerService.class);
+            Intent intent = new Intent(BaseApplication.getContext(), SimulateKeyService.class);
             BaseApplication.getContext().startService(intent);
         }else if (closeBtn == view){
-            Intent intent = new Intent(BaseApplication.getContext(), BackgroungSpeechRecongnizerService.class);
+            Intent intent = new Intent(BaseApplication.getContext(), SimulateKeyService.class);
             BaseApplication.getContext().stopService(intent);
-        }else if (BtnStart == view){
-            BroadcastManager.sendBroadcast(BroadcastManager.ACTION_VOICE_EMULATE_KEY_OPEN,null);
-        }else if (BtnOver == view){
-            BroadcastManager.sendBroadcast(BroadcastManager.ACTION_VOICE_EMULATE_KEY_CLOSE,null);
         }
     }
 }
