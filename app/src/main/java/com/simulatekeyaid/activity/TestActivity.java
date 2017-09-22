@@ -24,10 +24,6 @@ public class TestActivity extends Activity implements View.OnClickListener {
     Button openBtn;
     @BindView(R.id.button2)
     Button closeBtn;
-    @BindView(R.id.button3)
-    Button BtnStart;
-    @BindView(R.id.button4)
-    Button BtnOver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +31,6 @@ public class TestActivity extends Activity implements View.OnClickListener {
         ButterKnife.bind(this);
         openBtn.setOnClickListener(this);
         closeBtn.setOnClickListener(this);
-        BtnStart.setOnClickListener(this);
-        BtnOver.setOnClickListener(this);
     }
 
     @Override
