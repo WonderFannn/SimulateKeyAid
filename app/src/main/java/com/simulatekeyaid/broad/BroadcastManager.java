@@ -13,10 +13,10 @@ import com.simulatekeyaid.application.BaseApplication;
  * @company 金鑫智慧
  */
 public class BroadcastManager {
-	/**
-	 * 关闭唤醒服务广播
-	 */
 
+	/**
+	 * 按键模拟广播
+	 */
 	public static final String ACTION_SIMULATE_KEY_HOME = "action_simulate_key_home";
 	public static final String ACTION_SIMULATE_KEY_BACK = "action_simulate_key_back";
 	public static final String ACTION_SIMULATE_KEY_DPAD_CENTER = "action_simulate_key_pad_center";
@@ -51,11 +51,10 @@ public class BroadcastManager {
 	public static void registerBoradcastReceiver1(BroadcastReceiver broadcastReceiver, String... action) {
 		if(broadcastReceiver == null || action == null)return;
 		IntentFilter myIntentFilter = new IntentFilter();
-			// 添加捕获的广播事件
-			for(int i = 0;i < action.length;i++){
-				myIntentFilter.addAction(action[i]);
-			}
-
+		// 添加捕获的广播事件
+		for(int i = 0;i < action.length;i++){
+			myIntentFilter.addAction(action[i]);
+		}
 		// 注册广播
 		BaseApplication.getContext().registerReceiver(broadcastReceiver, myIntentFilter);
 	}
@@ -65,10 +64,10 @@ public class BroadcastManager {
 	public static void registerBoradcastReceiver2(BroadcastReceiver broadcastReceiver, String[] action) {
 		if(broadcastReceiver == null || action == null)return;
 		IntentFilter myIntentFilter = new IntentFilter();
-			// 添加捕获的广播事件
-			for(int i = 0;i < action.length;i++){
-				myIntentFilter.addAction(action[i]);
-			}
+		// 添加捕获的广播事件
+		for(int i = 0;i < action.length;i++){
+			myIntentFilter.addAction(action[i]);
+		}
 
 		// 注册广播
 		BaseApplication.getContext().registerReceiver(broadcastReceiver, myIntentFilter);
