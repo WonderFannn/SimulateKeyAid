@@ -39,6 +39,7 @@ public class SimulateKeyService extends Service {
     @Override
     public void onDestroy() {
         ToastUtil.showShort(BaseApplication.getContext(),"按键模拟服务已关闭");
+        unregisterReceiver(wakeBroadcast);
         super.onDestroy();
     }
 
